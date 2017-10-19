@@ -51,8 +51,6 @@ class CreatableSelect extends React.Component {
 
 		const filteredOptions = filterOptions(...params) || [];
 
-		console.log('filterOptions()');
-
 		if (isValidNewOption({ label: this.inputValue })) {
 			const { newOptionCreator } = this.props;
 
@@ -82,8 +80,6 @@ class CreatableSelect extends React.Component {
 				filteredOptions.push(this._createPlaceholderOption);
 			}
 		}
-
-		console.log(filteredOptions);
 
 		return filteredOptions;
 	}

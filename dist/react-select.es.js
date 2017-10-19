@@ -114,7 +114,6 @@ function clearRenderer() {
 	});
 }
 
-var babelHelpers = {};
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
   return typeof obj;
 } : function (obj) {
@@ -344,28 +343,6 @@ var possibleConstructorReturn = function (self, call) {
 
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-babelHelpers;
 
 var Option = function (_React$Component) {
 	inherits(Option, _React$Component);
@@ -2146,6 +2123,8 @@ var CreatableSelect = function (_React$Component) {
 
 			var filteredOptions = filterOptions$$1.apply(undefined, arguments) || [];
 
+			console.log('filterOptions()');
+
 			if (isValidNewOption({ label: this.inputValue })) {
 				var _newOptionCreator = this.props.newOptionCreator;
 
@@ -2175,6 +2154,8 @@ var CreatableSelect = function (_React$Component) {
 					filteredOptions.unshift(this._createPlaceholderOption);
 				}
 			}
+
+			console.log(filteredOptions);
 
 			return filteredOptions;
 		}

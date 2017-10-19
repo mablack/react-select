@@ -2123,8 +2123,6 @@ var CreatableSelect = function (_React$Component) {
 
 			var filteredOptions = filterOptions$$1.apply(undefined, arguments) || [];
 
-			console.log('filterOptions()');
-
 			if (isValidNewOption({ label: this.inputValue })) {
 				var _newOptionCreator = this.props.newOptionCreator;
 
@@ -2155,8 +2153,6 @@ var CreatableSelect = function (_React$Component) {
 					filteredOptions.push(this._createPlaceholderOption);
 				}
 			}
-
-			console.log(filteredOptions);
 
 			return filteredOptions;
 		}

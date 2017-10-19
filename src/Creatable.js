@@ -78,7 +78,8 @@ class CreatableSelect extends React.Component {
 					valueKey: this.valueKey
 				});
 
-				filteredOptions.unshift(this._createPlaceholderOption);
+				// filteredOptions.unshift(this._createPlaceholderOption);
+				filteredOptions.push(this._createPlaceholderOption);
 			}
 		}
 

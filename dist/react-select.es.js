@@ -2121,6 +2121,9 @@ var CreatableSelect = function (_React$Component) {
 
 			var excludeOptions = (arguments.length <= 2 ? undefined : arguments[2]) || [];
 
+			console.log('filterOptions');
+			console.log(excludeOptions);
+
 			var filteredOptions = filterOptions$$1.apply(undefined, arguments) || [];
 
 			if (isValidNewOption({ label: this.inputValue })) {

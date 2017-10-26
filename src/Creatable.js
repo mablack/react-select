@@ -49,6 +49,9 @@ class CreatableSelect extends React.Component {
 		// This covers async edge-cases where a newly-created Option isn't yet in the async-loaded array.
 		const excludeOptions = params[2] || [];
 
+		console.log('filterOptions')
+		console.log(excludeOptions)
+
 		const filteredOptions = filterOptions(...params) || [];
 
 		if (isValidNewOption({ label: this.inputValue })) {

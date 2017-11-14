@@ -52,7 +52,7 @@ class CreatableSelect extends React.Component {
 		const filteredOptions = filterOptions(...params) || [];
 
 		if (isValidNewOption({ label: this.inputValue })) {
-			const { newOptionCreator } = this.props;
+			const { newOptionCreator, renderCreateOptionLast } = this.props;
 
 			const option = newOptionCreator({
 				label: this.inputValue,
@@ -76,7 +76,11 @@ class CreatableSelect extends React.Component {
 					valueKey: this.valueKey
 				});
 
-				filteredOptions.unshift(this._createPlaceholderOption);
+				if (renderCreateOptionLast) {
+					filteredOptions.push(this._createPlaceholderOption);
+				} else {
+					filteredOptions.unshift(this._createPlaceholderOption);
+				}
 			}
 		}
 
@@ -247,6 +251,7 @@ CreatableSelect.defaultProps = {
 	menuRenderer: defaultMenuRenderer,
 	newOptionCreator,
 	promptTextCreator,
+	renderCreateOptionLast: false,
 	shouldKeyDownEventCreateNewOption
 };
 
@@ -290,6 +295,8 @@ CreatableSelect.propTypes = {
 		// Creates prompt/placeholder option text.
 		// (filterText: string): string
 	promptTextCreator: PropTypes.func,
+
+	renderCreateOptionLast: PropTypes.bool,
 
 	// Decides if a keyDown event (eg its `keyCode`) should result in the creation of a new option.
 	shouldKeyDownEventCreateNewOption: PropTypes.func,

@@ -114,7 +114,6 @@ function clearRenderer() {
 	});
 }
 
-var babelHelpers = {};
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
   return typeof obj;
 } : function (obj) {
@@ -344,28 +343,6 @@ var possibleConstructorReturn = function (self, call) {
 
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-babelHelpers;
 
 var Option = function (_React$Component) {
 	inherits(Option, _React$Component);
@@ -2147,7 +2124,9 @@ var CreatableSelect = function (_React$Component) {
 			var filteredOptions = filterOptions$$1.apply(undefined, arguments) || [];
 
 			if (isValidNewOption({ label: this.inputValue })) {
-				var _newOptionCreator = this.props.newOptionCreator;
+				var _props3 = this.props,
+				    _newOptionCreator = _props3.newOptionCreator,
+				    renderCreateOptionLast = _props3.renderCreateOptionLast;
 
 
 				var option = _newOptionCreator({
@@ -2172,7 +2151,11 @@ var CreatableSelect = function (_React$Component) {
 						valueKey: this.valueKey
 					});
 
-					filteredOptions.unshift(this._createPlaceholderOption);
+					if (renderCreateOptionLast) {
+						filteredOptions.push(this._createPlaceholderOption);
+					} else {
+						filteredOptions.unshift(this._createPlaceholderOption);
+					}
 				}
 			}
 
@@ -2222,9 +2205,9 @@ var CreatableSelect = function (_React$Component) {
 	}, {
 		key: 'onInputKeyDown',
 		value: function onInputKeyDown(event) {
-			var _props3 = this.props,
-			    shouldKeyDownEventCreateNewOption = _props3.shouldKeyDownEventCreateNewOption,
-			    onInputKeyDown = _props3.onInputKeyDown;
+			var _props4 = this.props,
+			    shouldKeyDownEventCreateNewOption = _props4.shouldKeyDownEventCreateNewOption,
+			    onInputKeyDown = _props4.onInputKeyDown;
 
 			var focusedOption = this.select.getFocusedOption();
 
@@ -2256,10 +2239,10 @@ var CreatableSelect = function (_React$Component) {
 		value: function render() {
 			var _this2 = this;
 
-			var _props4 = this.props,
-			    newOptionCreator = _props4.newOptionCreator,
-			    shouldKeyDownEventCreateNewOption = _props4.shouldKeyDownEventCreateNewOption,
-			    restProps = objectWithoutProperties(_props4, ['newOptionCreator', 'shouldKeyDownEventCreateNewOption']);
+			var _props5 = this.props,
+			    newOptionCreator = _props5.newOptionCreator,
+			    shouldKeyDownEventCreateNewOption = _props5.shouldKeyDownEventCreateNewOption,
+			    restProps = objectWithoutProperties(_props5, ['newOptionCreator', 'shouldKeyDownEventCreateNewOption']);
 			var children = this.props.children;
 
 			// We can't use destructuring default values to set the children,
@@ -2360,6 +2343,7 @@ CreatableSelect.defaultProps = {
 	menuRenderer: menuRenderer,
 	newOptionCreator: newOptionCreator,
 	promptTextCreator: promptTextCreator,
+	renderCreateOptionLast: false,
 	shouldKeyDownEventCreateNewOption: shouldKeyDownEventCreateNewOption
 };
 
@@ -2403,6 +2387,8 @@ CreatableSelect.propTypes = {
 	// Creates prompt/placeholder option text.
 	// (filterText: string): string
 	promptTextCreator: PropTypes.func,
+
+	renderCreateOptionLast: PropTypes.bool,
 
 	// Decides if a keyDown event (eg its `keyCode`) should result in the creation of a new option.
 	shouldKeyDownEventCreateNewOption: PropTypes.func
